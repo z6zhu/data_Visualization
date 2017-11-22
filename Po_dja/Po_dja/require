@@ -1,0 +1,43 @@
+djagno rest framework
+pip
+uwsgi
+mysql
+pymongo
+python-mysql
+
+
+
+
+<div id="all_right">
+
+
+<div id="right_mid"></div>
+
+<div id="right_buttom"></div>
+
+</div>
+
+
+
+#all_right{
+	background-color:black;
+	width:25%;
+	height:100%;
+	float:right;
+	
+}
+
+#right_mid{
+	background-color:black;
+	width:100%;
+	height:50%;
+	float:right;
+	
+}
+#right_buttom{
+	background-color:black;
+	width:100%;
+	height:50%;
+	float:right;
+	
+}

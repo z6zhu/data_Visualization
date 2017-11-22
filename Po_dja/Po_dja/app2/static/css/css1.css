@@ -1,0 +1,57 @@
+ #txt{
+  width:40%;
+  height:20%;  
+  background-color:yellow;
+
+ }
+  
+#all{
+background-color:black;
+width:100%;
+height:100%;
+}
+
+#low_1{
+background-color:red;
+width:40%;
+height:20%;
+float:left;
+
+}
+
+#low_2{
+background-color:green;
+width:20%;
+height:20%;
+float:left;
+
+}
+
+#low_3{
+background-color:red;
+width:40%;
+height:20%;
+float:left;
+}
+#low_mid{
+background-color:white;
+width:80%;
+height:80%;
+float:left;
+}
+
+#low_4{
+background-color:green;
+width:20%;
+height:40%;
+float:right;
+}
+#low_5{
+background-color:red;
+width:20%;
+height:40%;
+position:relative;
+float:right;
+
+
+}

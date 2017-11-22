@@ -1,0 +1,1 @@
+uwsgi --socket :8000 --chdir /usr/local/python_web/Po_dja/Po_dja/ --wsgi-file Po_dja/wsgi.py --master --processes 4 --threads 2

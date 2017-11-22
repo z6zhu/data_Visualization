@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# chkconfig: 2345 10 90
+# description: myservice ....
+
+case $1 in
+        start)
+        cd /kafka_run     
+	python alarmmessage.py &
+        python alarmsend.py &
+        python zcell_send.py &
+        python jgpush.py &
+        python messagepush.py &
+        echo "start alarmmessage,alarmsend ,zcell_send, jgpush ,messagepush defence"
+	;;
+        stop)
+	alarmmessage_kill= `ps -ef | grep python | grep alarmmessage | awk '{print $2}' |xargs kill -9`
+        echo $alarmmessage_kill
+
+        alarmsend_kill= `ps -ef | grep python | grep alarmsend | awk '{print $2}' | xargs kill -9`
+	echo $alarmsend_kill
+        
+	zcell_send_kill= `ps -ef | grep python | grep zcell_send | awk '{print $2}' | xargs kill -9` 
+        echo $zcell_send_kill
+
+	jgpush_kill= `ps -ef | grep python | grep jgpush | awk '{print $2}' | xargs kill -9`
+	echo jgpush_kill         
+
+	messagepush_kill= `ps -ef | grep python | grep messagepush | awk '{print $2}' | xargs kill -9 `
+	echo messagepush_kill
+	
+	;;
+        restart)  
+	 alarmmessage_kill= `ps -ef | grep python | grep alarmmessage | awk '{print $2}' |xargs kill -9`
+        echo $alarmmessage_kill
+
+        alarmsend_kill= `ps -ef | grep python | grep alarmsend | awk '{print $2}' | xargs kill -9`
+        echo $alarmsend_kill
+
+
+        zcell_send_kill= `ps -ef | grep python | grep zcell_send | awk '{print $2}' | xargs kill -9`
+        echo $zcell_send_kill
+
+        jgpush_kill= `ps -ef | grep python | grep jgpush | awk '{print $2}' | xargs kill -9`
+        echo jgpush_kill
+
+        messagepush_kill= `ps -ef | grep python | grep messagepush | awk '{print $2}' | xargs kill -9 `
+        echo messagepush_kill
+	
+	
+	cd /kafka_run
+        python alarmmessage.py &
+        python alarmsend.py &
+        python zcell_send.py &
+        python jgpush.py &
+        python messagepush.py &
+        echo "start alarmmessage,alarmsend ,zcell_send, jgpush ,messagepush"
+
+	;;
+        status)  echo "status" ;;
+        *)          echo "Usage: $0 {start|stop|restart|status}" ;;
+    esac
+

@@ -1,0 +1,184 @@
+
+<html>
+<head>
+ <meta charset="utf-8">
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/css1.css' %}" />
+{% load staticfiles %}
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+{% load staticfiles %}
+<script src="{% static 'js/echarts.min.js' %}"></script>
+ <!--         style  jquery                                            -->
+ 
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+
+
+<div id="all">
+
+<div id="low_1"></div>
+
+<div id="low_2">
+
+
+<div id="txt">
+
+</div>
+<input type="submit" value="fresh" />
+
+</div>
+
+<script type="text/javascript">
+
+var myVar=setInterval(function(){myTimer()},1000);
+function myTimer(){
+	var d=new Date();
+	var t=d.toLocaleTimeString();
+	document.getElementById("txt").innerHTML=t;
+}
+
+</script>
+
+<div id="low_3"></div>
+
+<div id="low_mid">
+
+</div>
+
+<div id="low_4"></div>
+
+<div id="low_5"></div>
+<div>
+
+<script type="text/javascript">
+
+
+$("#low_2").click(function(){
+	
+    
+    setInterval("startshow()",5000);
+    });
+   
+     function startshow(){
+    	 
+    	 $.ajax({url:"http://localhost:8000/api/per_run/",success:function(result){
+    			var arry=new Array();
+    			for(i=0;i<result.length;i++)
+    				{
+    				arry.push(result[i].age);
+    			
+    			     console.log(arry);
+    				}
+    			
+    //	 start
+    			var myChart = echarts.init(document.getElementById('low_mid'));
+
+    	         var option = {
+    	       title: {
+    	           text: '跑步数',
+    	           subtext: '纯属虚构'
+    	       },
+    	       tooltip: {
+    	           trigger: 'axis'
+    	       },
+    	       legend: {
+    	           data:['最高气温','最低气温']
+    	       },
+    	       toolbox: {
+    	           show: true,
+    	           feature: {
+    	               dataZoom: {
+    	                   yAxisIndex: 'none'
+    	               },
+    	               dataView: {readOnly: false},
+    	               magicType: {type: ['line', 'bar']},
+    	               restore: {},
+    	               saveAsImage: {}
+    	           }
+    	       },
+    	       xAxis:  {
+    	           type: 'category',
+    	           boundaryGap: false,
+    	           data: [arry[0],arry[1],arry[2],arry[3],arry[4],arry[5],arry[6]]
+    	       },
+    	       yAxis: {
+    	           type: 'value',
+    	           axisLabel: {
+    	               formatter: '{value} °C'
+    	           }
+    	       },
+    	       series: [
+    	           {
+    	               name:'最高气温',
+    	               type:'line',
+    	               data:[11, 11, 15, 13, 12, 13, 10],
+    	               markPoint: {
+    	                   data: [
+    	                       {type: 'max', name: '最大值'},
+    	                       {type: 'min', name: '最小值'}
+    	                   ]
+    	               },
+    	               markLine: {
+    	                   data: [
+    	                       {type: 'average', name: '平均值'}
+    	                   ]
+    	               }
+    	           },
+    	           {
+    	               name:'最低气温',
+    	               type:'line',
+    	               data:[1, -2, 2, 5, 3, 2, 0],
+    	               markPoint: {
+    	                   data: [
+    	                       {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+    	                   ]
+    	               },
+    	               markLine: {
+    	                   data: [
+    	                       {type: 'average', name: '平均值'},
+    	                       [{
+    	                           symbol: 'none',
+    	                           x: '90%',
+    	                           yAxis: 'max'
+    	                       }, {
+    	                           symbol: 'circle',
+    	                           label: {
+    	                               normal: {
+    	                                   position: 'start',
+    	                                   formatter: '最大值'
+    	                               }
+    	                           },
+    	                           type: 'max',
+    	                           name: '最高点'
+    	                       }]
+    	                   ]
+    	               }
+    	           }
+    	       ]
+    	     };
+    	         
+    	     
+    	         // 使用刚指定的配置项和数据显示图表。
+    	         myChart.setOption(option); 
+    	         
+    	         
+    // end
+    			
+		
+    		    
+    		}});
+    	 
+        
+    	 }
+    	
+    	 // 基于准备好的dom，初始化echarts实例
+    	
+  		
+    	  // 指定图表的配置项和数据
+    	 
+
+    </script>
+
+</body>
+</html>

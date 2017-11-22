@@ -1,0 +1,745 @@
+<html>
+<head>
+ <meta charset="utf-8">
+{% load staticfiles %}
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+ <!--         style  jquery                                            -->
+<style type="text/css">
+div p{
+font-weight:bold;
+}
+</style>
+</head>
+<body id="body_go" style="background-image:url({% static 'img/detail.png' %});background-repeat:no-repeat;background-size:contain;background-size:100% 100%;">
+
+<div id="active" style="position:absolute;left:12.5%;top:13%;width:25%;height:30%;background-image:url({% static 'img/kafka.gif' %});background-size:contain;background-size:100% 100%;"></div>
+
+<div id="alarmserver1" style="position:absolute;left:12%;top:18%;color:yellow;"><p style="font-size:20px;font-family:黑体;font-weight:bold">12345</p></div><div id="alarmserver2" style="position:absolute;left:12%;top:21%;color:yellow;font-family:黑体;"><p style="font-size:20px;font-weight:bold">12345</p></div>
+<div id="alarmpush1" style="position:absolute;left:18%;top:9%;color:yellow;"><p style="font-size:20px;font-family:黑体;font-weight:bold">12345</p></div><div id="alarmpush2" style="position:absolute;left:18%;top:12%;color:yellow;font-family:黑体;"><p style="font-size:20px;font-weight:bold">12345</p></div>
+<div id="jgpush" style="position:absolute;left:28%;top:9%;color:yellow;"><p style="font-size:20px;font-family:黑体;font-weight:bold">12345</p></div></div><div id="jgpush2" style="position:absolute;left:28%;top:12%;color:yellow;font-family:黑体;"><p style="font-size:20px;font-weight:bold">12345</p></div>
+<div id="msgpush" style="position:absolute;left:34.5%;top:21%;color:yellow;"><p style="font-size:20px;font-family:黑体;font-weight:bold">12345</p></div>
+<div id="web" style="position:absolute;left:34.5%;top:30%;color:yellow;"><p style="font-size:20px;font-family:黑体;font-weight:bold">12345</p></div>
+
+
+<div id="shop1" style="position:absolute;left:11%;top:65%;color:white;"><p style="font-weight:bold;font-family:黑体;">jx starting</p></div><div id="shop11" style="position:absolute;left:20.5%;top:65%;color:white;"><p style="font-family:黑体;font-weight:bold;">12345</p></div>
+<div id="shop2" style="position:absolute;left:11%;top:69%;color:white;"><p style="font-family:黑体;font-weight:bold">jx starting</p></div><div id="shop22" style="position:absolute;left:20.5%;top:69%;color:white;"><p style="font-family:黑体;font-weight:bold">2345</p></div>
+<div id="shop3" style="position:absolute;left:11%;top:73%;color:white;"><p style="font-family:黑体;font-weight:bold">jx starting</p></div><div id="shop33" style="position:absolute;left:20.5%;top:73%;color:white;"><p style="font-family:黑体;font-weight:bold">345</p></div>
+<div id="shop4" style="position:absolute;left:11%;top:76.5%;color:white;"><p style="font-family:黑体;font-weight:bold">jx starting</p></div><div id="shop44" style="position:absolute;left:20.5%;top:76.5%;color:white;"><p style="font-family:黑体;font-weight:bold">45</p></div>
+<div id="shop5" style="position:absolute;left:11%;top:80.5%;color:white;"><p style="font-family:黑体;font-weight:bold">jx starting</p></div><div id="shop55" style="position:absolute;left:20.5%;top:80.5%;color:white;"><p style="font-family:黑体;font-weight:bold">5</p></div>
+
+<div id="out_zcell_1"><div id="in_zcell_1" style="position:absolute;left:38%;top:49%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_1</p></div><div id="zcell_1" style="position:absolute;left:42%;top:49%;color:yellow;"><p>- -</p></div></div>
+<div id="out_zcell_2"><div id="in_zcell_2" style="position:absolute;left:38%;top:52.5%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_2</p></div><div id="zcell_2" style="position:absolute;left:42%;top:52.5%;color:yellow;font-family:黑体;font-size:15px;"><p>12345</p></div></div>
+<div id="out_zcell_3"><div id="in_zcell_3" style="position:absolute;left:38%;top:56%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_3</p></div><div id="zcell_3" style="position:absolute;left:42%;top:56%;color:yellow;font-family:黑体;font-size:15px;"><p>12345</p></div></div>
+
+<div id="out_zcell_4"><div id="in_zcell_4" style="position:absolute;left:32%;top:59.5%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_4</p></div><div id="zcell_4" style="position:absolute;left:36%;top:59.5%;color:yellow;font-family:黑体;"><p>12345</p></div></div>
+<div id="out_zcell_5"><div id="in_zcell_5" style="position:absolute;left:32%;top:63%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_5</p></div><div id="zcell_5" style="position:absolute;left:36%;top:63%;color:yellow;font-family:黑体;"><p>12345</p></div></div>
+<div id="out_zcell_6"><div id="in_zcell_6" style="position:absolute;left:32%;top:66%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_6</p></div><div id="zcell_6" style="position:absolute;left:36%;top:66%;color:yellow;font-family:黑体;"><p>12345</p></div></div>
+
+<div id="out_zcell_7"><div id="in_zcell_7" style="position:absolute;left:28%;top:70%;color:#73fff1;font-family:黑体;font-weight:bold"><p >zcell_7</p></div><div id="zcell_7" style="position:absolute;left:32%;top:70%;color:yellow;font-family:黑体;"><p>12345</p></div></div>
+<div id="out_zcell_8"><div id="in_zcell_8" style="position:absolute;left:28%;top:73%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_8</p></div><div id="zcell_8" style="position:absolute;left:32%;top:73%;color:yellow;font-family:黑体;"><p>12345</p></div></div>
+<div id="out_zcell_9"><div id="in_zcell_9" style="position:absolute;left:28%;top:76%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_9</p></div><div id="zcell_9" style="position:absolute;left:32%;top:76%;color:yellow;font-family:黑体;"><p>- -</p></div></div>
+
+<div id="out_zcell_10"><div id="in_zcell_10" style="position:absolute;left:59.5%;top:45.5%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_10</p></div><div id="zcell_10" style="position:absolute;left:63.5%;top:45.5%;color:yellow;font-family:黑体;"><p>12345</p></div></div>
+<div id="out_zcell_11"><div id="in_zcell_11" style="position:absolute;left:59.5%;top:48.5%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_11</p></div><div id="zcell_11" style="position:absolute;left:63.5%;top:48.5%;color:yellow;font-family:黑体;"><p>12345</p></div></div>
+<div id="out_zcell_12"><div id="in_zcell_12" style="position:absolute;left:59.5%;top:52%;color:#73fff1;font-weight:bold"><p>zcell_12</p></div><div id="zcell_12" style="position:absolute;left:63.5%;top:52%;color:yellow;font-family:黑体;"><p>12345</p></div></div>
+
+<div id="out_zcell_13"><div id="in_zcell_13" style="position:absolute;left:62.5%;top:57%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_13</p></div><div id="zcell_13" style="position:absolute;left:66.5%;top:57%;color:yellow;font-family:黑体;"><p>12345</p></div></div>
+<div id="out_zcell_14"><div id="in_zcell_14" style="position:absolute;left:62.5%;top:60%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_14</p></div><div id="zcell_14" style="position:absolute;left:66.5%;top:60%;color:yellow;font-family:黑体;"><p>12345</p></div></div>
+<div id="out_zcell_15"><div id="in_zcell_15" style="position:absolute;left:62.5%;top:63%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_15</p></div><div id="zcell_15" style="position:absolute;left:66.5%;top:63%;color:yellow;font-family:黑体;"><p>12345</p></div></div>
+
+<div  style="position:absolute;left:64%;top:72%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_16</p></div><div id="zcell_16" style="position:absolute;left:68%;top:72%;color:yellow;"><p>- -</p></div>
+<div  style="position:absolute;left:64%;top:75%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_17</p></div><div id="zcell_17" style="position:absolute;left:68%;top:75%;color:yellow;"><p>- -</p></div>
+<div  style="position:absolute;left:64%;top:78%;color:#73fff1;font-family:黑体;font-weight:bold"><p>zcell_18</p></div><div id="zcell_18" style="position:absolute;left:68%;top:78%;color:yellow;"><p>- -</p></div>
+
+<div id="user1" style="position:absolute;left:82%;top:65%;color:white;font-weight:bold;"><p style="font-family:黑体;font-weight:bold">jx starting</p></div><div id="user11" style="position:absolute;left:91.5%;top:65%;color:white;font-weight:bold;"><p style="font-weight:bold;font-family:黑体;">12345</p></div>
+<div id="user2" style="position:absolute;left:82%;top:69%;color:white;font-weight:bold;"><p style="font-family:黑体;font-weight:bold">jx starting</p></div><div id="user22" style="position:absolute;left:91.5%;top:69%;color:white;font-weight:bold;"><p style="font-weight:bold;font-family:黑体;">2345</p></div>
+<div id="user3" style="position:absolute;left:82%;top:73%;color:white;font-weight:bold;"><p style="font-family:黑体;font-weight:bold">jx starting</p></div><div id="user33" style="position:absolute;left:91.5%;top:73%;color:white;font-weight:bold;"><p style="font-weight:bold;font-family:黑体;">345</p></div>
+<div id="user4" style="position:absolute;left:82%;top:76.5%;color:white;font-weight:bold;"><p style="font-family:黑体;font-weight:bold">jx starting</p></div><div id="user44" style="position:absolute;left:91.5%;top:76.5%;color:white;font-weight:bold;"><p style="font-weight:bold;font-family:黑体;">45</p></div>
+<div id="user5" style="position:absolute;left:82%;top:80%;color:white;font-weight:bold;"><p style="font-family:黑体;font-weight:bold">jx starting</p></div><div id="user55" style="position:absolute;left:91.5%;top:80%;color:white;font-weight:bold;"><p style="font-weight:bold;font-family:黑体;">5</p></div>
+
+
+<div id="user_sum" style="position:absolute;left:64%;top:11%;font-size:90px;color:yellow;font-family:黑体;font-weight:bold;"><p>12345</p></div>
+<div id="shop_sum" style="position:absolute;left:71%;top:24%;font-size:90px;color:yellow;font-family:黑体;font-weight:bold;"><p>12345</p></div>
+
+<div id="active" style="position:absolute;left:29%;top:75%;width:40%;height:20%;background-image:url({% static 'img/active.gif' %});background-size:contain;background-size:100% 100%;"></div>
+
+
+<script type="text/javascript">
+
+//var shop_l=[];
+//var user_l=[];
+
+zcell_init();                   //   init  the  zcell data 
+mysql_init();                       //   init  the  mysql data
+
+var interval_host;
+interval_host=setInterval(function (){	 
+	zcell_init(); 
+}, 60000);
+//---------------------------------------------------------------------
+var interval_mysql;
+interval_mysql=setInterval(function (){
+	mysql_init(); 
+},60000);
+//--------------------------------------------------------------
+$("#out_zcell_2").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_2 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//--------------------------------------------------------------
+$("#out_zcell_3").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_3 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_4").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_4 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_4").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_4 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_4").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_4 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_4").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_4 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_4").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_4 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_5").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_5 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_6").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_6 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_7").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_7 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_8").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_8 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_9").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_9 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_10").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_10 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_11").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_11 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_12").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_12 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_13").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_13 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_14").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_14 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+$("#out_zcell_15").mouseover(function(){
+	$("#body_go").append("<div id='tmp' style='position:absolute;left:70%;top:40%;font-size:20px;color:yellow;'><p></p></div>");
+	zcelln=$("#in_zcell_15 >p").text();
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:3,zcell_num:zcelln},
+		 success:function(result){
+			 mode=result.module;
+			 var mode_str="";
+			 for(i=0;i<mode.length;i++){
+				 if(i%4==3){
+					 mode_str+="</br>";
+				 }
+				 else{
+					 mode_str+=mode[i];
+					 mode_str+="&nbsp &nbsp &nbsp";	 
+				 } 
+			 }
+			 $("#tmp >p").html(mode_str);	
+		 }		 
+	})
+
+}).mouseout(function(){
+	$("#tmp").remove();
+})
+//-------------------------------------------------------------
+
+function zcell_init(){
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:1},
+		 success:function(result){
+			 
+			 $("#alarmpush1 >p").text(result.send_latest_offset[1]-result.send_latest_offset[0]);
+			 $("#alarmpush2 >p").text(result.send_current_offset[1]-result.send_current_offset[0]);
+			 
+			 $("#alarmserver1 >p").text(result.alarm_current_offset[1]-result.alarm_current_offset[0]);
+			 $("#alarmserver2 >p").text(result.alarm_latest_offset[1]-result.alarm_latest_offset[0]);
+			 
+			 $("#jgpush >p").text(result.jgpush_current_offset[1]-result.jgpush_current_offset[0]);
+			 $("#jgpush2 >p").text(result.jgpush_latest_offset[1]-result.jgpush_latest_offset[0]);
+			 $("#msgpush >p").text(result.msgcount);
+			 $("#web >p").text(result.web_request);
+			 
+			 $("#zcell_2 >p").text(result.zcell_2.host_number);
+			 $("#zcell_3 >p").text(result.zcell_3.host_number);
+			 $("#zcell_4 >p").text(result.zcell_4.host_number);
+			 $("#zcell_5 >p").text(result.zcell_5.host_number);
+			 $("#zcell_6 >p").text(result.zcell_6.host_number);
+			 $("#zcell_7 >p").text(result.zcell_7.host_number);
+			 $("#zcell_8 >p").text(result.zcell_8.host_number);
+			 $("#zcell_10 >p").text(result.zcell_10.host_number);
+			 $("#zcell_11 >p").text(result.zcell_11.host_number);
+			 $("#zcell_12 >p").text(result.zcell_12.host_number);
+			 $("#zcell_13 >p").text(result.zcell_13.host_number);
+			 $("#zcell_14 >p").text(result.zcell_14.host_number);
+			 $("#zcell_15 >p").text(result.zcell_15.host_number);
+			 
+		 } 
+	})
+	
+}
+
+function mysql_init(){
+	$.ajax({
+		 url:"/topo/",
+		 dataType:'json',
+		 type:'GET',
+		 data:{data:2},
+		 async: false,
+		 success:function(data_mysql){
+			 
+			 console.log(data_mysql);
+			 var inter_shop;
+			 var inter_user;
+			
+			 
+			 $("#user_sum >p").text(data_mysql.user);
+			 $("#shop_sum >p").text(data_mysql.shop);
+			 
+			 var shop_l=data_mysql.shop_month;	
+			 
+			 $("#shop1 >p").text(shop_l[0][0]);
+			 $("#shop11 >p").text(shop_l[0][1]);
+			 
+			 $("#shop2 >p").text(shop_l[1][0]);
+			 $("#shop22 >p").text(shop_l[1][1]);
+			 
+			 $("#shop3 >p").text(shop_l[2][0]);
+			 $("#shop33 >p").text(shop_l[2][1]);
+			 
+			 $("#shop4 >p").text(shop_l[3][0]);
+			 $("#shop44 >p").text(shop_l[3][1]);
+			 
+			 $("#shop5 >p").text(shop_l[4][0]);
+			 $("#shop55 >p").text(shop_l[4][1]);
+			 
+			 var user_l=data_mysql.user_month;
+			 
+			 
+			 $("#user1 >p").text(user_l[0][0]);
+			 $("#user11 >p").text(user_l[0][1]);
+			 
+			 $("#user2 >p").text(user_l[1][0]);
+			 $("#user22 >p").text(user_l[1][1]);
+			 
+			 $("#user3 >p").text(user_l[2][0]);
+			 $("#user33 >p").text(user_l[2][1]);
+			 
+			 $("#user4 >p").text(user_l[3][0]);
+			 $("#user44 >p").text(user_l[3][1]);
+			 
+			 $("#user5 >p").text(user_l[4][0]);
+			 $("#user55 >p").text(user_l[4][1]);
+			var inter_shop_count=0;
+ 			inter_shop=setInterval(function(){
+ 				 tmp=shop_l.shift();
+ 				 shop_l.push(tmp);
+ 				 
+ 				 $("#shop1 >p").text(shop_l[0][0]);
+ 				 $("#shop11 >p").text(shop_l[0][1]);
+ 				 
+ 				 $("#shop2 >p").text(shop_l[1][0]);
+ 				 $("#shop22 >p").text(shop_l[1][1]);
+ 				 
+ 				 $("#shop3 >p").text(shop_l[2][0]);
+ 				 $("#shop33 >p").text(shop_l[2][1]);
+ 				 
+ 				 $("#shop4 >p").text(shop_l[3][0]);
+ 				 $("#shop44 >p").text(shop_l[3][1]);
+ 				 
+ 				 $("#shop5 >p").text(shop_l[4][0]);
+ 				 $("#shop55 >p").text(shop_l[4][1]);
+				
+				 if(inter_shop_count>=11){               // for resolve the  asyn interval between inter_shop and interval_host
+ 					clearInterval(inter_shop);
+ 				 }
+ 				 else{
+ 					inter_shop_count+=1;
+ 				 }
+	
+ 				  
+			    //     tmp=shop_l.shift();
+                              //   shop_l.push(tmp);
+			 },5000)
+			var inter_user_count=0;
+			 inter_user=setInterval(function(){ 
+				 tmp=user_l.shift();
+ 				 user_l.push(tmp);
+ 				 $("#user1 >p").text(user_l[0][0]);
+ 				 $("#user11 >p").text(user_l[0][1]);
+ 				 
+ 				 $("#user2 >p").text(user_l[1][0]);
+ 				 $("#user22 >p").text(user_l[1][1]);
+ 				 
+ 				 $("#user3 >p").text(user_l[2][0]);
+ 				 $("#user33 >p").text(user_l[2][1]);
+ 				 
+ 				 $("#user4 >p").text(user_l[3][0]);
+ 				 $("#user44 >p").text(user_l[3][1]);
+ 				 
+ 				 $("#user5 >p").text(user_l[4][0]);
+ 				 $("#user55 >p").text(user_l[4][1]);
+			if(inter_user_count>=11){
+ 					clearInterval(inter_user);
+ 				 }
+ 				 else{
+ 					inter_user_count+=1;
+ 				 }
+			//	 tmp=user_l.shift();
+                          //       user_l.push(tmp);
+				 
+			 },5000)			 
+		 }
+	})
+		
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,628 @@
+
+<html>
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/char.css' %}" />
+{% load staticfiles %}
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+{% load staticfiles %}
+<script src="{% static 'js/echarts.min.js' %}"></script>
+ <!--                          style  jquery                                   -->
+ 
+</head>
+<body style="background-image:url({% static 'img/bg.png' %});background-position:center center;background-color:#000;background-size:contain;background-size:100% 100%;" >
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="navigation">
+<div id="text_div" >
+<p align="center" ><strong style="font-family:黑体;">每分钟点击量、消息走势分析图</strong></p>
+</div>
+<div id="logo">
+{% load staticfiles %}
+<img src="{% static 'img/jiexin.png' %}" height="100%" width="30%" >
+</div>
+
+<div id="table_div">
+
+<table border="0" align="center" width="100%" height="100%" >
+    <tr>
+        <th>
+           <select  id="select_text"  >  
+   			  <option value="1">1小时内</option>
+   			  <option value="2">3小时内 </option> 
+   			  <option value="3">6小时内 </option> 
+   		 	  <option value="4">12小时内 </option> 
+   		 	  <option value="5">24小时内 </option> 
+   		   </select>  
+  	  </th> 
+  	   <th>
+           <select  id="select_bar_line" >  
+   		   <option value="1">bar</option> 
+   		   <option value="2">line</option>
+   		   </select>  
+  	  </th>
+    
+        <th ><input  id="foreward" type="button" value="查看之前" /></th>
+        <th ><input id="afterward" type="button" value="返回" /></th>    
+        <th ><font style="font-family:黑体;" color="white" size="1">更新</font><input type="checkbox" id="fresh_page" value="1"></th>
+        <th><input type="datetime-local" id="user_date_1"  ></input></th>   
+        <th><input type="datetime-local" id="user_date_2" ></input></th>  
+   
+      </tr>
+</table>
+
+</div>
+
+</div>                            
+
+<div id="all">
+<div id="all_left"> </div>
+
+</div>
+
+<script type="text/javascript">
+	
+var count=0;
+
+var data0=[];             //about the 100 * ydata1
+var xdata=[];
+var ydata1=[];
+var ydata2=[];
+
+var leave_x=[];     // about x leave 
+var leave_y_0=[] ;     
+var leave_y_1=[] ;   //    about 1 leave 
+var leave_y_2=[] ;     //   about 2 leave 
+
+var leave_after_x=[];     // about x leave 
+var leave_after_y_0=[] ;
+var leave_after_y_1=[] ;   //    about 1 leave 
+var leave_after_y_2=[] ;     //   about 2 leave 
+
+//  init the  data 
+var x_number=30;                        // x number
+var options="1";
+//----------------------------set--------------------------------------
+var bar_or_line="bar";
+var select_hour="1";
+
+var data_1=new Date();
+var data_2=new Date();
+
+// select line or bar 
+
+$("#select_bar_line").change(function(){                                     //done
+
+		var options=$("#select_bar_line option:selected").val();
+		if(options==1){
+			bar_or_line="bar";
+				
+		}
+		else{
+			bar_or_line="line";			
+		}
+		
+});
+// select data for  right chart  
+
+$("#user_date_1").change(function(){                                   //done
+	
+	data_1=$("#user_date_1").val();	
+	data_2=$("#user_date_2").val();
+	 $.ajax({
+		 url:"/map_char1/",
+		 dataType:'json',
+		 type:'POST',
+		 data:{data_date1:data_1,data_date2:data_2},
+		 success:function(result){
+
+                        xdata=result.x_list
+			 ydata1=result.y1_list
+			 ydata2=result.y2_list
+			 data0=result.y0_list
+			 echart_fun(xdata,ydata1,ydata2,data0,bar_or_line); 
+				 
+		 }
+	        });
+		
+});	
+	
+$("#user_date_2").change(function(){                              //done
+	
+	data_1=$("#user_date_1").val();	
+	data_2=$("#user_date_2").val();	
+	
+	 $.ajax({
+		 url:"/map_char1/",
+		 dataType:'json',
+		 type:'POST',
+		 data:{data_date1:data_1,data_date2:data_2},
+		 success:function(result){			 
+			 console.log(result);	
+			xdata=result.x_list
+			 ydata1=result.y1_list
+			 ydata2=result.y2_list
+			 data0=result.y0_list
+			 echart_fun(xdata,ydata1,ydata2,data0,bar_or_line); 		
+			 			 
+	 }       
+	});
+	      		
+});
+
+function ajax_data(result){	
+	
+	/*		
+	 $("#tab_div_1 p").html("每分钟点击 总值："+result.sum_it);  //max data not need %    max_it 
+	 $("#tab_div_11 p").html("每分钟消息 总值："+result.sum_msg);
+	 
+	 $("#tab_div_1").css("color","#FFFFFF");
+	 $("#tab_div_11").css("color","#FFFFFF");
+	 		 
+	 $("#tab_div_2 p").html("每分钟点击 峰值："+result.max_it);  //max data not need %    max_it
+	 $("#tab_div_2").css("color","#FFFFFF");
+	 
+	 $("#tab_div_22 p").html("每分钟消息 峰值："+result.max_msg);
+	 $("#tab_div_22").css("color","#FFFFFF");
+	 
+	 $("#tab_div_3 p").html("每分钟点击 平均值："+result.avg_it);             //avg_it
+	// var bai_fen_3=(result.avg_it/result.max_it)*100; 
+	// var bai_fen_str3=bai_fen_3+"%";
+	// $("#tab_div_3").css("width",bai_fen_str3);
+	 $("#tab_div_3").css("color","#FFFFFF");
+	 
+	 $("#tab_div_33 p").html("每分钟消息 平均值："+result.avg_msg);             //avg_msg
+	 //var bai_fen_33=(result.avg_msg/result.max_msg)*100; 
+	 //var bai_fen_str33=bai_fen_33+"%";
+	// $("#tab_div_33").css("width",bai_fen_str33);
+	 $("#tab_div_33").css("color","#FFFFFF");
+	  
+	 $("#tab_div_4 p").html(result.min_it);                       //min_it
+	 var bai_fen_4=(result.min_it/result.max_it)*100; 
+	 var bai_fen_str4=bai_fen_4+"%";
+	 $("#tab_div_4").css("width",bai_fen_str4);
+	 $("#tab_div_4").css("color","#FFFFFF");	
+	 
+	 $("#tab_div_44 p").html(result.min_msg);                       //min_msg
+	 var bai_fen_44=(result.min_msg/result.max_msg)*100; 
+	 var bai_fen_str44=bai_fen_44+"%";
+	 $("#tab_div_44").css("width",bai_fen_str44);
+	 $("#tab_div_44").css("color","#FFFFFF");	
+	*/ 
+	//start
+	  
+	 var zoneChart = echarts.init(document.getElementById('   '));
+	
+	
+	
+	 
+	 opt =  {
+			    tooltip: {
+			        trigger: 'item',
+			        formatter: "{a} <br/>{b}: {c} ({d}%)"
+			    },
+			     title: {
+			        text: '客户地区分布',
+			        left: 'center',
+			        top: 'top',
+			        
+				    textStyle: {
+			            color: '#fff'
+			        } 
+				    	           
+			    },
+			    legend: {
+			        orient: 'vertical',
+			        x: 'left',
+			        y: 'center',
+			        data:[result.province[0],result.province[1],result.province[2],result.province[3],result.province[4],result.province[5],result.province[6]],
+			        textStyle : {
+			            color: '#fff'
+			        }
+			    },
+			    series: [
+			        {
+			            name:'客户分布',
+			            type:'pie',
+			            radius: ['10%', '70%'],
+			            center: ['60%', '50%'], 
+			            avoidLabelOverlap: false,
+			            label: {
+			                normal: {
+			                    show: false,
+			                    position: 'center'
+			                },
+			                emphasis: {
+			                    show: true,
+			                    textStyle: {
+			                        fontSize: '30',
+			                        fontWeight: 'bold'
+			                    }
+			                }
+			            },
+			            labelLine: {
+			                normal: {
+			                    show: false
+			                }
+			            },
+			            data:[
+			            	{value:result.province_count[0], name:result.province[0]},
+			            	{value:result.province_count[1], name:result.province[1]},
+			            	{value:result.province_count[2], name:result.province[2]},
+			            	{value:result.province_count[3], name:result.province[3]},
+			            	{value:result.province_count[4], name:result.province[4]},
+			            	{value:result.province_count[5], name:result.province[5]},
+			            	{value:result.province_count[6], name:result.province[6]},
+			            
+			            ]
+			        }
+			    ]
+			};
+	 
+	 zoneChart.setOption(opt);
+	
+	 
+	//start  
+	
+	 var zhuChart = echarts.init(document.getElementById('     '));
+	
+	// this zone msg and click had exchange  , left echart is normal
+
+	 option = {
+	     tooltip: {
+	         trigger: 'item',
+	         formatter: "{a} <br/>{b}: {c} ({d}%)"
+	     },
+	     title: {
+	 			        text: '点击量、消息区间值占比',
+	 			        left: 'center',
+	 			        top: 'top',
+	 			        
+	 				    textStyle: {
+	 			            color: '#fff'
+	 			        } 
+	 				    	           
+	 			    },
+	     legend: {
+	    	 orient: 'vertical',
+		     x: 'left',
+		     y: 'center',
+	      
+	         data:["msg:"+0+"--"+result.avg_it/2,result.avg_it/2+"--"+result.avg_it,result.avg_it+"--"+((result.max_it+result.avg_it)/2).toFixed(2),((result.max_it+result.avg_it)/2).toFixed(2)+"--"+result.max_it,"click:"+0+"--"+result.avg_msg/2,result.avg_msg/2+"--"+result.avg_msg,result.avg_msg+"--"+((result.max_msg+result.avg_msg)/2).toFixed(2),((result.max_msg+result.avg_msg)/2).toFixed(2)+"--"+result.max_msg],
+	         textStyle: {
+	 			           color: '#fff'
+	 			       } 
+	     },
+	     series: [
+	         {
+	             name:'msg占比',
+	             type:'pie',
+	             radius: ['45%', '65%'],
+	             center: ['60%', '50%'], 
+	             avoidLabelOverlap: false,
+	             label: {
+	                 normal: {
+	                     show: false,
+	                     position: 'center'
+	                 },
+	                 emphasis: {
+	                     show: true,
+	                     textStyle: {
+	                         fontSize: '30',
+	                         fontWeight: 'bold'
+	                     }
+	                 }
+	             },
+	             labelLine: {
+	                 normal: {
+	                     show: false
+	                 }
+	             },
+	            
+	             data:[
+	                 {value:result.pie_1, name:"msg:"+0+"--"+result.avg_it/2, selected:true},
+	                 {value:result.pie_2, name:result.avg_it/2+"--"+result.avg_it, selected:true},
+	                 {value:result.pie_3, name:result.avg_it+"--"+((result.max_it+result.avg_it)/2).toFixed(2), selected:true},
+	                 {value:result.pie_4, name:((result.max_it+result.avg_it)/2).toFixed(2)+"--"+result.max_it, selected:true},
+	                
+	             ]
+	         },
+	          {
+	             name:'click占比',
+	             type:'pie',
+	             avoidLabelOverlap: false,
+	              label: {
+	                 normal: {
+	                     show: false,
+	                     position: 'center'
+	                 },
+	                 emphasis: {
+	                     show: true,
+	                     textStyle: {
+	                         fontSize: '30',
+	                         fontWeight: 'bold'
+	                     }
+	                 }
+	             },
+	              labelLine: {
+	                 normal: {
+	                     show: false
+	                 }
+	             },
+	             radius: ['20%', '35%'],
+	             center: ['60%', '50%'], 
+
+	             data:[
+	            	 {value:result.pie_msg_1, name:"click:"+0+"--"+result.avg_msg/2 },
+	            	 {value:result.pie_msg_2, name:result.avg_msg/2+"--"+result.avg_msg },
+	            	 {value:result.pie_msg_3, name:result.avg_msg+"--"+((result.max_msg+result.avg_msg)/2).toFixed(2) },
+	            	 {value:result.pie_msg_4, name:((result.max_msg+result.avg_msg)/2).toFixed(2)+"--"+result.max_msg },
+	                
+	             ]
+	         },
+	        
+	     ]
+	 }; 
+	 
+
+	 
+	 zhuChart.setOption(option);
+	 			
+}
+
+// forward
+$("#foreward").click(function(){         //  file tail  function       // done
+
+    leave_after_x.unshift(xdata.pop());
+    xdata.unshift(leave_x.pop());
+    
+    leave_after_y_0.unshift(data0.pop());
+    data0.unshift(leave_y_0.pop());
+    
+    leave_after_y_1.unshift(ydata1.pop());
+    ydata1.unshift(leave_y_1.pop());
+    
+    leave_after_y_2.unshift(ydata2.pop());
+    ydata2.unshift(leave_y_2.pop());
+    
+    echart_fun(xdata,ydata1,ydata2,data0,bar_or_line);               // echart
+});
+
+//after
+$("#afterward").click(function(){                                  // done
+	console.log(leave_after_x.length);
+	if(leave_after_x.length>0){
+		    leave_x.push(xdata.shift());
+		    xdata.push(leave_after_x.shift());
+		    
+		    leave_y_0.push(data0.shift());
+		    data0.push(leave_after_y_0.shift());
+		    
+		    
+		    leave_y_1.push(ydata1.shift());
+		    ydata1.push(leave_after_y_1.shift());
+		    
+		    leave_y_2.push(ydata2.shift());
+		    ydata2.push(leave_after_y_2.shift());
+		    
+		    echart_fun(xdata,ydata1,ydata2,data0,bar_or_line);  //  file tail   function
+	}
+   
+}); 
+
+var interval;
+
+$("#fresh_page").change(function(){                           // done
+	if($(this).is(':checked')==true){
+        options=$("#select_text option:selected").val();
+        options=parseInt(options);
+		$.ajax({
+			 url:"/map_char1/",
+			 dataType:'json',
+			 type:'GET',
+			 data:{value:options},
+			 success:function(result){
+				console.log(result); 
+				xdata=result.x_list;
+				data0=result.y0_list;
+				ydata1=result.y1_list;
+				ydata2=result.y2_list;
+				
+		echart_fun(xdata,ydata1,ydata2,data0,bar_or_line);     // fresh memont
+			 }
+		})			
+		
+// set interval function abtout ajax 			
+interval=setInterval(function (){
+			
+		var options=$("#select_text option:selected").val();
+		options=parseInt(options);
+		 $.ajax({
+			 url:"/map_char1/",
+			 dataType:'json',
+			 type:'GET',
+			 data:{value:options},
+			 success:function(result){
+				 
+				xdata=result.x_list;
+				data0=result.y0_list;
+				ydata1=result.y1_list;
+				ydata2=result.y2_list;
+				 
+				  if(leave_x.length<50 && leave_y_1.length<50 && leave_y_2.length<50){       //if  litter than 50 then  into leave_x 
+	                  
+					    var axisData=xdata[0];
+					    leave_x.push(axisData);
+					
+
+					    var y_1=ydata1[0];
+					    leave_y_1.push(y_1);
+					    
+					    var y_0=data0[0]
+					    leave_y_0.push(y_0)
+					    
+					    var y_2=ydata2[0];
+					    leave_y_2.push(y_2);	    
+					    
+		     }	
+		     else{
+		    	 console.log(leave_x.length);
+		    	 leave_x.shift();
+				 leave_y_1.shift();
+				 leave_y_0.shift();
+				 leave_y_2.shift();
+				
+		     }
+									 
+					 echart_fun(xdata,ydata1,ydata2,data0,bar_or_line);                 // echart
+ 
+				 }
+		    });
+		
+		
+				}, 60000);
+						
+	}
+	else{
+		
+		 clearInterval(interval);	
+	}
+			
+});
+//  dynamic  chart for  left 
+function echart_fun(xdata,ydata1,ydata2,data0,bar_or_line){                            // done
+	 var myChart = echarts.init(document.getElementById('all_left'));
+     
+	    option = {
+	    	  
+	    	    tooltip : {
+	    	        trigger: 'axis'
+	    	    },
+	    	    legend: {
+	    	        data:['点击量','消息计数','布防撤防'],
+	    	        textStyle: {
+	    	            color: '#fff'
+	    	        }
+	    	    },
+	    	    
+	    	    toolbox: {
+	    	        show : true,
+	    	        feature : {
+	    	            dataView : {show: true, readOnly: false},
+	    	            magicType : {show: true, type: ['line', 'bar']},
+	    	            restore : {show: true},
+	    	            saveAsImage : {show: true}
+	    	        }
+	    	    },
+	    	    calculable : true,
+	    	    xAxis : [
+	    	        {     
+				axisLine: {
+          			  show: false
+ 				       },
+       			 axisTick: {
+            			show: false
+       				 },
+        		axisLabel: {
+           			 inside: false,
+            			textStyle: {
+                		color: '#FFF'
+           			 },
+       				 },
+			 type : 'category',
+	    	         data : xdata
+	    	        }
+	    	    ],
+	    	    yAxis : [
+	    	        {
+	                     axisLine: {
+       			     show: false
+       				 },
+       			 axisTick: {
+           			 show: false
+      				  },
+        		axisLabel: {
+          			  inside: false,
+            		textStyle: {
+                		color: '#FFF'
+           			 },
+       				 },
+	    	            type : 'value'
+                              
+			 }               
+	    	    ],
+	    	   
+	    	    series : [
+	    	        {
+	    	            name:'消息计数',
+	    	            type:bar_or_line,
+	    	            data:ydata1,                      // ydata1
+	    	            itemStyle:{  
+	                    normal:{color:'#FF0000'}  
+	                    }  ,
+	                    
+	    	            markPoint : {
+	    	                data : [
+	    	                    {type : 'max', name: '最大值'},
+	    	                    {type : 'min', name: '最小值'}
+	    	                ]
+	    	            },
+	    	            markLine : {
+	    	                data : [
+	    	                    {type : 'average', name: '平均值'}
+	    	                ]
+	    	            }
+	    	        },
+	    	        {
+	    	        	name:'布防撤防',
+	    	            type:bar_or_line,
+	    	            data:data0,                      // ydata1
+	    	            itemStyle:{  
+	                    normal:{color:'#40E0D0'}  
+	                    },
+				markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+			 markLine : {
+                                data : [
+                                    {type : 'average', name : '平均值'}
+                                ]
+                            }
+
+   
+	    	        },
+	    	        
+	    	        {
+	    	            name:'点击量',
+	    	            type:bar_or_line,                            //bar or line
+	    	            data:ydata2,                         //ydata2
+	    	            itemStyle:{  
+	    	                normal:{color:'#31b140'}  
+	    	                }  ,
+	    	                
+	    	            markPoint : {
+	    	            	data : [
+	    	                    {type : 'max', name: '最大值'},
+	    	                    {type : 'min', name: '最小值'}
+	    	                ]
+	    	            },
+	    	            markLine : {
+	    	                data : [
+	    	                    {type : 'average', name : '平均值'}
+	    	                ]
+	    	            }
+	    	        }
+	    	       
+	    	    ]
+	    	};	
+	   
+			    myChart.setOption(option);
+	
+}
+</script>
+</body>
+</html>

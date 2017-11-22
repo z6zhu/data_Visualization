@@ -1,0 +1,865 @@
+<html>
+<head>
+ <meta charset="utf-8">
+{% load staticfiles %}
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+{% load staticfiles %}
+<script src="{% static 'js/echarts.min.js' %}"></script>
+ <!--         style  jquery                                            -->
+<head>
+<body style="background-image:url({% static 'img/6.png' %});background-position:center center;background-color:#000;background-size:contain;background-size:100% 100%;">
+
+<div id="user_in" style="position:absolute;left:10%;top:3%;color:white;font-size:100px;font-family:黑体;color:SteelBlue;">用户</div>
+<div id='user_all' style="position:absolute;left:25%;top:3%;color:white;font-size:100px;letter-spacing:30px;font-family:黑体;color:yellow;">11111</div>
+
+<div id="shop_in" style="position:absolute;left:55%;top:3%;color:white;font-size:100px;font-family:黑体;color:SteelBlue">店铺</div>
+<div id='shop_all' style="position:absolute;left:70%;top:3%;color:white;font-size:100px;letter-spacing:30px;font-family:黑体;color:yellow">22222</div>
+
+
+
+	<div id='user1' style="position:absolute;left:10%;top:20%;color:white;font-size:20px;font-family:黑体;font-weight:bold;"><p></p></div><div id='user11' style="position:absolute;left:23%;top:20%;color:white;font-size:20px;font-family:黑体;"><p></p></div>
+	<div id='user_span1' style="position:absolute;left:10%;top:25%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:Chocolate;width:100%;height:100%;border-radius:5px;"></div></div>
+	<div id='user_span1' style="position:absolute;left:10%;top:25%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:DarkOrange;width:0%;height:100%;border-radius:5px;"></div></div>
+	
+	<div id='user2' style="position:absolute;left:10%;top:26%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div><div id='user22' style="position:absolute;left:23%;top:26%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div>
+	<div  style="position:absolute;left:10%;top:31%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:Chocolate;width:100%;height:100%;border-radius:5px;"></div></div>
+	<div id='user_span2' style="position:absolute;left:10%;top:31%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:DarkOrange;width:0%;height:100%;border-radius:5px;"></div></div>
+	
+	<div id='user3' style="position:absolute;left:10%;top:32%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div><div id='user33' style="position:absolute;left:23%;top:32%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div>
+	<div  style="position:absolute;left:10%;top:37%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:Chocolate;width:100%;height:100%;border-radius:5px;"></div></div>
+	<div id='user_span3' style="position:absolute;left:10%;top:37%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:DarkOrange;width:0%;height:100%;border-radius:5px;"></div></div>
+	
+	<div id='user4' style="position:absolute;left:10%;top:38%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div><div id='user44' style="position:absolute;left:23%;top:38%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div>
+	<div style="position:absolute;left:10%;top:43%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:Chocolate;width:100%;height:100%;border-radius:5px;"></div></div>
+	<div id='user_span4' style="position:absolute;left:10%;top:43%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:DarkOrange;width:0%;height:100%;border-radius:5px;"></div></div>
+	
+	<div id='user5' style="position:absolute;left:10%;top:43%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div><div id='user55' style="position:absolute;left:23%;top:43%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div>
+	<div style="position:absolute;left:10%;top:48%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:Chocolate;width:100%;height:100%;border-radius:5px;"></div></div>
+		<div id='user_span5' style="position:absolute;left:10%;top:48%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:DarkOrange;width:0%;height:100%;border-radius:5px;"></div></div>
+
+
+
+<div id='hu_wei' style="position:absolute;left:18%;top:20%;width:65%;height:35%;color:white;font-size:40px;"></div>
+
+
+
+	<div id='shop1' style="position:absolute;left:75%;top:20%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div><div id='shop11' style="position:absolute;left:88%;top:20%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div>
+	<div  style="position:absolute;left:75%;top:25%;width:15%;height:1%;border-radius:5px;"><div  style="position;relative;background-color:Chocolate;width:100%;height:100%;border-radius:5px;"></div></div>
+	<div  style="position:absolute;left:75%;top:25%;width:15%;height:1%;border-radius:5px;"><div id='shop_span1' style="position;relative;background-color:DarkOrange;width:0%;height:100%;border-radius:5px;"></div></div>
+	
+	
+	<div id='shop2' style="position:absolute;left:75%;top:26%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div><div id='shop22' style="position:absolute;left:88%;top:26%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div>
+	<div style="position:absolute;left:75%;top:31%;width:15%;height:1%;border-radius:5px;"><div  style="position;relative;background-color:Chocolate;width:100%;height:100%;border-radius:5px;"></div></div>
+	<div style="position:absolute;left:75%;top:31%;width:15%;height:1%;border-radius:5px;"><div id='shop_span2' style="position;relative;background-color:DarkOrange;width:0%;height:100%;border-radius:5px;"></div></div>
+	
+	<div id='shop3' style="position:absolute;left:75%;top:32%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div><div id='shop33' style="position:absolute;left:88%;top:32%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div>
+	<div  style="position:absolute;left:75%;top:37%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:Chocolate;width:100%;height:100%;border-radius:5px;"></div></div>
+	<div id='shop_span3' style="position:absolute;left:75%;top:37%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:DarkOrange;width:0%;height:100%;border-radius:5px;"></div></div>
+	
+	<div id='shop4' style="position:absolute;left:75%;top:38%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div><div id='shop44' style="position:absolute;left:88%;top:38%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div>
+	<div  style="position:absolute;left:75%;top:43%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:Chocolate;width:100%;height:100%;border-radius:5px;"></div></div>
+	<div id='shop_span4' style="position:absolute;left:75%;top:43%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:DarkOrange;width:0%;height:100%;border-radius:5px;"></div></div>
+	
+	<div id='shop5' style="position:absolute;left:75%;top:43%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div><div id='shop55' style="position:absolute;left:88%;top:43%;color:white;font-size:20px;font-weight:bold;font-family:黑体;"><p></p></div>
+	<div style="position:absolute;left:75%;top:48%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:Chocolate;width:100%;height:100%;border-radius:5px;"></div></div>
+	<div id='shop_span5' style="position:absolute;left:75%;top:48%;width:15%;height:1%;border-radius:5px;"><div style="position;relative;background-color:DarkOrange;width:0%;height:100%;border-radius:5px;"></div></div>
+
+
+<div id='e_dun' style="position:absolute;left:3%;top:55%;color:white;width:45%;height:45%;"></div>
+
+<div id='online_offline' style="position:absolute;left:52%;top:55%;color:white;width:45%;height:45%;"></div>
+
+ 
+<script type="text/javascript">
+var interval_apps;
+interval_apps=setInterval(function (){	  
+	$.ajax({
+		 url:"/user_shop/",
+		 dataType:'json',
+		 type:'GET',
+		 success:function(result){
+			 
+			 console.log(result);
+			 var shop_temp=[];
+			 var user_temp=[];
+			 
+			 $("#user_all").text(result.user);
+			 $("#shop_all").text(result.shop);
+			 
+			//------------------------------------- 
+			var shop_l=result.shop_month;
+			var slice_shop=shop_l.slice(0,5);
+
+			for(i=0;i<slice_shop.length;i++){
+				shop_temp.push(slice_shop[i][1]);
+			}
+			var max_shop=Math.max.apply(null, shop_temp);
+			for(i=0;i<shop_temp.length;i++){
+				shoptemp=shop_temp.shift();		
+				percent=(shoptemp/max_shop*100).toFixed(1)+"%";
+				shop_temp.push(percent);				
+			}
+			
+			 $("#shop1 >p").text(shop_l[0][0]);
+			 $("#shop11 >p").text(shop_l[0][1]);
+			 $("#shop_span1").css('width',shop_temp[0]);
+		
+			
+			 
+			 $("#shop2 >p").text(shop_l[1][0]);
+			 $("#shop22 >p").text(shop_l[1][1]);
+			 $("#shop_span2").css('width',shop_temp[1]);
+			
+			 
+			 $("#shop3 >p").text(shop_l[2][0]);
+			 $("#shop33 >p").text(shop_l[2][1]);
+			 $("#shop_span3 > div").css('width',shop_temp[2]);
+			
+			 
+			 $("#shop4 >p").text(shop_l[3][0]);
+			 $("#shop44 >p").text(shop_l[3][1]);
+			 $("#shop_span4 > div").css('width',shop_temp[3]);
+			
+			 
+			 $("#shop5 >p").text(shop_l[4][0]);
+			 $("#shop55 >p").text(shop_l[4][1]);
+			 $("#shop_span5 > div").css('width',shop_temp[4]);
+		
+			//------------------------------------- 
+			var user_l=result.user_month;
+			var slice_user=user_l.slice(0,5);
+
+			for(i=0;i<slice_user.length;i++){
+				user_temp.push(slice_user[i][1]);
+			}
+			var max_value=Math.max.apply(null, user_temp);
+		
+			for(i=0;i<user_temp.length;i++){
+				shift_tmp=user_temp.shift();		
+				percent=(shift_tmp/max_value*100).toFixed(1)+"%";
+				user_temp.push(percent);				
+			}
+			
+			 $("#user1 >p").text(user_l[0][0]);
+			 $("#user11 >p").text(user_l[0][1]);
+			 $("#user_span1 > div").css('width',user_temp[0]);
+			 
+			 $("#user2 >p").text(user_l[1][0]);
+			 $("#user22 >p").text(user_l[1][1]);
+			 $("#user_span2 > div").css('width',user_temp[1]);
+			 
+			 $("#user3 >p").text(user_l[2][0]);
+			 $("#user33 >p").text(user_l[2][1]);
+			 $("#user_span3 > div").css('width',user_temp[2]);
+			 
+			 $("#user4 >p").text(user_l[3][0]);
+			 $("#user44 >p").text(user_l[3][1]);
+			 $("#user_span4 > div").css('width',user_temp[3]);
+			 
+			 $("#user5 >p").text(user_l[4][0]);
+			 $("#user55 >p").text(user_l[4][1]);
+			 $("#user_span5 > div").css('width',user_temp[4]);
+//-------------------------------------------------------------------------------------			
+			 var inter_shop_count=0;
+			 var inter_shop;
+	 				inter_shop=setInterval(function(){
+	 				 tmp=shop_l.shift();
+	 				 shop_l.push(tmp);
+
+		 			slice_shop=[];
+		 			shop_temp=[];
+		 			
+		 			slice_shop=shop_l.slice(0,5);
+		 			for(i=0;i<slice_shop.length;i++){
+						shop_temp.push(slice_shop[i][1]);
+					}
+					var max_shop=Math.max.apply(null, shop_temp);
+					for(i=0;i<shop_temp.length;i++){
+						shoptemp=shop_temp.shift();		
+						percent_go=(shoptemp/max_shop*100).toFixed(1)+"%";
+						shop_temp.push(percent_go);				
+					}
+	 				 console.log(shop_temp);
+	 		
+	 				 $("#shop1 >p").text(shop_l[0][0]);
+	 				 $("#shop11 >p").text(shop_l[0][1]);
+	 				$("#shop_span1").css('width',shop_temp[0]);
+	 				 
+	 				 
+	 				 $("#shop2 >p").text(shop_l[1][0]);
+	 				 $("#shop22 >p").text(shop_l[1][1]);
+	 				 $("#shop_span2").css('width',shop_temp[1]);
+	 				 
+	 				 $("#shop3 >p").text(shop_l[2][0]);
+	 				 $("#shop33 >p").text(shop_l[2][1]);
+	 				$("#shop_span3 > div").css('width',shop_temp[2]);
+	 				 
+	 				 $("#shop4 >p").text(shop_l[3][0]);
+	 				 $("#shop44 >p").text(shop_l[3][1]);
+	 				$("#shop_span4 > div").css('width',shop_temp[3]);
+	 				 
+	 				 $("#shop5 >p").text(shop_l[4][0]);
+	 				 $("#shop55 >p").text(shop_l[4][1]);
+	 				$("#shop_span5 > div").css('width',shop_temp[4]);
+					
+					 if(inter_shop_count==3){               // for resolve the  asyn interval between inter_shop and interval_host
+	 					clearInterval(inter_shop);
+	 				 }
+	 				 else{
+	 					inter_shop_count+=1;
+	 				 }
+		  
+				 },3000)
+				 var inter_user_count=0;
+	 		     var inter_user;
+				 inter_user=setInterval(function(){ 
+					 tmp1=user_l.shift();
+	 				 user_l.push(tmp1);
+	 
+	 				slice_user=[];
+	 				user_temp=[];
+	 				slice_user=user_l.slice(0,5);
+	 				
+	 				for(i=0;i<slice_user.length;i++){
+	 					user_temp.push(slice_user[i][1]);
+	 				}
+	 				var max_value=Math.max.apply(null, user_temp);
+	 			
+	 				for(i=0;i<user_temp.length;i++){
+	 					usertmp=user_temp.shift();		
+	 					percent=(usertmp/max_value*100).toFixed(1)+"%";
+	 					user_temp.push(percent);				
+	 				}
+	 			console.log("========",user_temp);
+ 
+	 				 $("#user1 >p").text(user_l[0][0]);
+	 				 $("#user11 >p").text(user_l[0][1]);
+	 				$("#user_span1 > div").css('width',user_temp[0]);
+	 				 
+	 				 $("#user2 >p").text(user_l[1][0]);
+	 				 $("#user22 >p").text(user_l[1][1]);
+	 				$("#user_span2 > div").css('width',user_temp[1]);
+	 				 
+	 				 $("#user3 >p").text(user_l[2][0]);
+	 				 $("#user33 >p").text(user_l[2][1]);
+	 				$("#user_span3 > div").css('width',user_temp[2]);
+	 				 
+	 				 $("#user4 >p").text(user_l[3][0]);
+	 				 $("#user44 >p").text(user_l[3][1]);
+	 				$("#user_span4 > div").css('width',user_temp[3]);
+	 				 
+	 				 $("#user5 >p").text(user_l[4][0]);
+	 				 $("#user55 >p").text(user_l[4][1]);
+	 				$("#user_span5 > div").css('width',user_temp[4]);
+					if(inter_user_count==4){
+	 					clearInterval(inter_user);
+	 				 }
+	 				 else{
+	 					inter_user_count+=1;
+	 				 }
+					 
+				 },2000)		
+//-------------------------------------------------------------------------		
+
+	   guan_xin_hu(result.hu_sum,result.hu_sum_online,result.xin_sum,result.xin_sum_online,result.guan_sum,result.guan_sum_online);
+	   
+	   var div_num4='online_offline'
+	   var legend4=['店铺总量','店铺online数量'];
+	   var color4=['#FFFF00','#40E0D0'];
+	   data_list_all=[]
+	   
+	   for(i=0;i<result.data_list_online.length;i++){
+	
+		  tmp=result.data_list_online[i]+result.data_list_offline[i];
+		   
+		   data_list_all.push(tmp);
+	  
+	   }
+	   two_thread(div_num4,legend4,color4,result.add_list_online,data_list_all,result.data_list_online);
+	   
+		dun_submit(result.dun_add_list,result.dun_data_list,result.dun_construct,result.dun_active);
+//--------------------------------------------------------------------------
+
+		 } 
+	})
+}, 13000);
+
+function guan_xin_hu(max1,data1,max2,data2,max3,data3){
+	
+	var three_echart = echarts.init(document.getElementById('hu_wei')); 
+	option = {
+		
+		    tooltip : {
+		        formatter: "{a} <br/>{c} {b}"
+		    },
+		  
+		    series : [
+		        {
+		            name:'臻中心',
+		            type:'gauge',
+		            min:0,
+		            max:max1,                                            // parameter   ------------------------
+		            splitNumber:10,
+		            radius: '90%',
+		            axisLine: {            // 坐标轴线
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    color: [[0.09, 'lime'],[0.82, '#1e90ff'],[1, '#FF8C00']],
+		                    width: 3,
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            axisLabel: {            // 坐标轴小标记
+		                textStyle: {       // 属性lineStyle控制线条样式
+		                    fontWeight: 'bolder',
+		                    color: '#fff',
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            axisTick: {            // 坐标轴小标记
+		                length :15,        // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    color: 'auto',
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            splitLine: {           // 分隔线
+		                length :25,         // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+		                    width:3,
+		                    color: '#fff',
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            pointer: {           // 分隔线
+		                shadowColor : '#fff', //默认透明
+		                shadowBlur: 5
+		            },
+		            title : {
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'bolder',
+		                    fontSize: 20,
+		                    fontStyle: 'italic',
+		                    color: '#fff',
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            detail : {
+		                backgroundColor: 'rgba(30,144,255,0.8)', 
+		                borderWidth: 1,
+		                borderColor: '#fff',
+		                shadowColor : '#fff', //默认透明
+		                shadowBlur: 5,
+		                offsetCenter: [0, '50%'],       // x, y，单位px
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'bolder',
+		                    color: '#fff'
+		                }
+		            },
+		            data:[{value: data1, name: '臻中心'}]                   // parameter   ------------------------
+		        },
+		        {
+		            name:'臻护卫',
+		            type:'gauge',
+		            center : ['30%', '60%'],    // 默认全局居中
+		            radius : '70%',
+		            min:0,
+		            max:max2,                                  // parameter   ------------------------
+		            endAngle:45,
+		            splitNumber:5,
+		            axisLine: {            // 坐标轴线
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    color: [[0.29, 'lime'],[0.86, '#1e90ff'],[1, '#FF8C00']],
+		                    width: 2,
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            axisLabel: {            // 坐标轴小标记
+		                textStyle: {       // 属性lineStyle控制线条样式
+		                    fontWeight: 'bolder',
+		                    color: '#fff',
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            axisTick: {            // 坐标轴小标记
+		                length :12,        // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    color: 'auto',
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            splitLine: {           // 分隔线
+		                length :20,         // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+		                    width:3,
+		                    color: '#fff',
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            pointer: {
+		                width:5,
+		                shadowColor : '#fff', //默认透明
+		                shadowBlur: 5
+		            },
+		            title : {
+		                offsetCenter: [0, '-30%'],       // x, y，单位px
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'bolder',
+		                    fontStyle: 'italic',
+		                    color: '#fff',
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            detail : {
+		                //backgroundColor: 'rgba(30,144,255,0.8)',
+		               // borderWidth: 1,
+		                borderColor: '#fff',
+		                shadowColor : '#fff', //默认透明
+		                shadowBlur: 5,
+		                width: 80,
+		                height:30,
+		                offsetCenter: [25, '20%'],       // x, y，单位px
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'bolder',
+		                    color: '#fff'
+		                }
+		            },
+		            data:[{value: data2, name: '臻护卫'}]                  // parameter   ------------------------
+		        },
+		        {
+		            name:'臻总管',
+		            type:'gauge',
+		            center : ['68%', '50%'],    // 默认全局居中
+		            radius : '70%',
+		            min:0,
+		            max:max3,                            // parameter   ------------------------
+		            startAngle:135,
+		            endAngle:5,
+		            splitNumber:5,
+		               axisLine: {            // 坐标轴线
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    color: [[0.29, 'lime'],[0.86, '#1e90ff'],[1, '#FF8C00']],
+		                    width: 2,
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            axisLabel: {            // 坐标轴小标记
+		                textStyle: {       // 属性lineStyle控制线条样式
+		                    fontWeight: 'bolder',
+		                    color: '#fff',
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            axisTick: {            // 坐标轴小标记
+		                length :12,        // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    color: 'auto',
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            splitLine: {           // 分隔线
+		                length :20,         // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+		                    width:3,
+		                    color: '#fff',
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            pointer: {
+		                width:5,
+		                shadowColor : '#fff', //默认透明
+		                shadowBlur: 5
+		            },
+		            title : {
+		                offsetCenter: [0, '-30%'],       // x, y，单位px
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'bolder',
+		                    fontStyle: 'italic',
+		                    color: '#fff',
+		                    shadowColor : '#fff', //默认透明
+		                    shadowBlur: 10
+		                }
+		            },
+		            detail : {
+		                //backgroundColor: 'rgba(30,144,255,0.8)',
+		               // borderWidth: 1,
+		                borderColor: '#fff',
+		                shadowColor : '#fff', //默认透明
+		                shadowBlur: 5,
+		                width: 80,
+		                height:30,
+		                offsetCenter: [25, '20%'],       // x, y，单位px
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'bolder',
+		                    color: '#fff'
+		                }
+		            },
+		            data:[{value: data3, name: '臻总管'}]          // parameter   ------------------------
+		        }
+		    ]
+		};
+	three_echart.setOption(option);
+}
+
+function two_thread(div_number,legend,color,xdata,ydata1,ydata2){
+	var two_echart = echarts.init(document.getElementById(div_number));   // parameter 1
+	option= {
+		    title: {
+                text: '',
+                subtext: '',
+                textStyle: {  
+                    color: 'white'  
+                    }
+             },
+			tooltip: {
+				trigger: 'axis'
+			},
+			  legend: {
+	    	        data:legend,    // parameter 2  
+	    	        textStyle: {
+	    	            color: '#fff'
+	    	        }
+	    	    },
+		  
+		
+			xAxis: {
+				type: 'category',
+				boundaryGap: false,
+				axisTick:{show:false},
+				 axisLine:{
+				        show:false,
+				    //    onZero:false
+				    },
+				axisLabel:{
+				    textStyle:{
+				        color:'#dededf'
+				    }
+				},
+				splitLine:{//网格线
+	                show: false 
+	            },
+				data: xdata   // parameter 4 
+			},
+			yAxis: {
+			    min:0,
+			   // max:ydata1[0],                 //  ----------------important-----------------------
+			    //interval:20,
+			    axisTick:{show:false},
+			    axisLine:{
+			        show:false,
+			    //    onZero:false
+			    },
+			    axisLabel:{
+				    textStyle:{
+				        color:'#dededf'
+				    }
+				},
+				splitLine:{//网格线
+	                show: true,
+	                lineStyle:{
+	                    color:['#ffffff'],
+	                    type:'dashed'
+	                }
+	             
+	            }
+			},
+			series: [
+				{
+					name:legend[0],                      // parameter 2
+					type:'line',
+					smooth:true,
+				    symbolSize:12,
+					data:ydata1,               // parameter 5  
+				    markPoint : {
+		                data : [
+			                    {type : 'max', name: '最大值'},
+			                    {type : 'min', name: '最小值'}
+			                ],
+			                markLine : {
+			                data : [
+			                    {type : 'average', name: '平均值'}
+			                ]
+			            }
+		            },
+					itemStyle:{  
+    	                normal:{color:color[0]}           // parameter 3
+    	                } ,
+					label: {
+						normal: {
+							show: false,
+							position: 'top'//值显示
+						}
+					},
+    	                
+    	                
+    	                
+					 areaStyle: {
+			                normal: {
+			                    opacity: "0.6",
+			                }
+			            }
+				
+					
+				},	{
+					name:legend[1],                     // parameter 2
+					type:'line',
+					smooth:true,
+				    symbolSize:12,
+					data:ydata2,              // parameter 6 
+				    markPoint : {
+		                data : [
+			                    {type : 'max', name: '最大值'},
+			                    {type : 'min', name: '最小值'}
+			                ],
+			                markLine : {
+			                data : [
+			                    {type : 'average', name: '平均值'}
+			                ]
+			            }
+		            },
+					itemStyle:{  
+    	                normal:{color:color[1]}             // parameter 3
+    	                } ,
+					label: {
+						normal: {
+							show: false,
+							position: 'top'//值显示
+						}
+					} ,
+    	                
+    	                
+    	               
+					   
+					 areaStyle: {
+			                normal: {
+			                    opacity: "0.6",
+			                }
+			            } 
+    	               
+    	                
+    	                
+				}
+			]
+		};
+	two_echart.setOption(option);
+}
+
+function dun_submit(xdata,ydata1,ydata2,ydata3){
+	var dun_echart = echarts.init(document.getElementById('e_dun'));
+	option = {
+		    tooltip: {
+		        trigger: 'axis',
+		        axisPointer: {
+		            type: 'cross',
+		            crossStyle: {
+		                color: '#999'
+		            }
+		        }
+		    },
+		     title: {
+		            text: '',
+		            subtext: '',
+		            textAlign: ''
+		        },
+
+		  
+		  
+		    legend: {
+		        data:[ '臻e盾(app)用户','臻e盾(安保)用户','臻e盾上线用户' ],
+			 textStyle: {
+ 	            color: '#fff'
+ 	        }
+		    },
+		    xAxis: [
+		        {
+		            type: 'category',
+		            data: xdata,
+		            boundaryGap: false,
+					axisTick:{show:false},
+					axisLine:{
+			            show:false
+ 
+			        },
+					axisLabel:{
+					    textStyle:{
+					        color:'#dededf'
+					    }
+					},
+					splitLine:{//网格线
+		                show: false
+		                
+		            },
+		            
+		           
+					 
+		        }
+		    ],
+		    yAxis: [
+		        {
+		        	  //min:0,
+					  //max:ydata1[0],                 //  ----------------important-----------------------
+					  //interval:20,
+					    axisTick:{show:false},
+					    axisLine:{
+					        show:false,
+					    //    onZero:false
+					    },
+					    axisLabel:{
+						    textStyle:{
+						        color:'#dededf'
+						    }
+						},
+						splitLine:{//网格线
+			                show: true,
+			                lineStyle:{
+			                    color:['#ffffff'],
+			                    type:'dashed'
+			                }
+			            }   
+		        },
+		       
+		    ],
+		    series: [
+		        {
+		            name:'臻e盾(app)用户',
+		            type:'bar',
+		            smooth:true,
+		            data:ydata1,
+		            
+		          areaStyle: {
+		                normal: {
+		                    opacity: "0.6",
+		                }
+		            } ,
+		         
+		            barWidth:'15px',
+		             markPoint : {
+		                data : [
+			                    {type : 'max', name: '最大值'},
+			                    {type : 'min', name: '最小值'}
+			                ],
+			                markLine : {
+			                data : [
+			                    {type : 'average', name: '平均值'}
+			                ]
+			            }
+		            },
+		            itemStyle: {
+		            
+		            normal: {
+		                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+		                    offset: 0,
+		                    color: '#2ab6f6' // 0% 处的颜色
+		                }, {
+		                    offset: 1,
+		                    color: '#75d5ff' // 100% 处的颜色
+		                }], false),
+		                barBorderRadius: [30, 30,0, 0],
+		                shadowColor: 'rgba(0,0,0,0.1)',
+		                shadowBlur: 3,
+		                shadowOffsetY: 3
+		            }
+		        }
+		        },
+		        {
+		            name:'臻e盾(安保)用户',
+		            type:'bar',
+		            data:ydata2,
+		            areaStyle: {
+		                normal: {
+		                    opacity: "0.6",
+		                }
+		            } ,
+		           
+		            smooth:true,
+		            barWidth:'15px',
+		             markPoint : {
+		                data : [
+			                    {type : 'max', name: '最大值'},
+			                    {type : 'min', name: '最小值'}
+			                ],
+			                markLine : {
+			                data : [
+			                    {type : 'average', name: '平均值'}
+			                ]
+			            }
+		            },
+		            itemStyle: {
+		            
+		            normal: {
+		                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+		                    offset: 0,
+		                    color: '#40E0D0'//'#40c91b' // 0% 处的颜色
+		                }, {
+		                    offset: 1,
+		                    color: '#40E0D0'//'#59df34' // 100% 处的颜色
+		                }], false),
+		                barBorderRadius: [30, 30,0, 0],
+		                shadowColor: 'rgba(0,0,0,0.1)',
+		                shadowBlur: 3,
+		                shadowOffsetY: 3
+		            }
+		        }
+		            
+		        },
+		        {
+		            name:'臻e盾上线用户',
+		            type:'bar',
+		            data:ydata3,
+		           areaStyle: {
+		                normal: {
+		                    opacity: "0.6",
+		                }
+		            } ,
+		       
+		            smooth:true,
+		            barWidth:'15px',
+		            markPoint : {
+		                data : [
+			                    {type : 'max', name: '最大值'},
+			                    {type : 'min', name: '最小值'}
+			                ],
+			                markLine : {
+			                data : [
+			                    {type : 'average', name: '平均值'}
+			                ]
+			            }
+		            },
+		            itemStyle: {
+		            
+		            normal: {
+		                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+		                    offset: 0,
+		                    color: '#FFA500' // 0% 处的颜色
+		                }, {
+		                    offset: 1,
+		                    color: '#FFA500' // 100% 处的颜色
+		                }], false),
+		                barBorderRadius: [30, 30,0, 0],
+		                shadowColor: 'rgba(0,0,0,0.1)',
+		                shadowBlur: 3,
+		                shadowOffsetY: 3
+		            }
+		        }	            
+		        },   		        
+		    ]
+		};
+	dun_echart.setOption(option);	
+}
+
+</script>
+</body>
+</html>

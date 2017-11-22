@@ -1,0 +1,13 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "defence_zone.py", line 34, in <module>
+    for i in consumer:
+  File "/usr/lib/python2.7/site-packages/pykafka/simpleconsumer.py", line 405, in __iter__
+    message = self.consume(block=True)
+  File "/usr/lib/python2.7/site-packages/pykafka/simpleconsumer.py", line 427, in consume
+    if self._messages_arrived.acquire(blocking=block, timeout=timeout):
+  File "/usr/lib/python2.7/site-packages/pykafka/utils/compat.py", line 125, in acquire
+    self._cond.wait(timeout)
+  File "/usr/lib64/python2.7/threading.py", line 361, in wait
+    _sleep(delay)
+KeyboardInterrupt
